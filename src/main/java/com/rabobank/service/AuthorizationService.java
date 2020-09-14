@@ -1,36 +1,35 @@
 package com.rabobank.service;
 
-import com.rabobank.entity.Card;
-import com.rabobank.repository.CardRepository;
+import com.rabobank.entity.Authorization;
+import com.rabobank.repository.AuthorizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AuthorizationService {
 
     @Autowired
-    private CardRepository cardRepository;
+    private AuthorizationRepository authorizationRepository;
 
-    public List<Card> getAllCards(Long id) {
-        List<Card> cards = new ArrayList<>();
-        cardRepository.findByPowerOfAttorneyAttorneyId(id).forEach(cards::add);
-        return cards;
+    public List<Authorization> getAllAuthos(Long id) {
+        List<Authorization> authorizations = new ArrayList<>();
+        authorizationRepository.findAll().forEach(authorizations::add);
+        return authorizations;
     }
 
-    public Optional<Card> getCard(Long id) {
-        return cardRepository.findById(id);
-    }
+   /* public Optional<Authorization> getCard(Long id) {
+        return authorizationRepository.findById(id);
+    }*/
 
-    public List<Card> getCardsByStatus() {
+   /* public List<Card> getCardsByStatus() {
 
-        return (List<Card>) cardRepository.findAllActiveCards();
-    }
+        return (List<Card>) authorizationRepository.findAllActiveCards();
+    }*/
 
-    public void addCard(Card card) {
-        cardRepository.save(card);
+    public void saveAll(List<Authorization> authorizations) {
+        authorizationRepository.saveAll(authorizations);
     }
 }

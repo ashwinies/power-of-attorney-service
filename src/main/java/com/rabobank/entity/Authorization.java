@@ -14,7 +14,7 @@ import java.util.Set;
 public class Authorization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
     private String type;
     @ManyToMany
     private Set<PowerOfAttorney> attorneys = new HashSet<>();
@@ -22,9 +22,18 @@ public class Authorization {
     public Authorization() {
     }
 
-    public Authorization(String id, String type, Set<PowerOfAttorney> attorneys) {
+    public Authorization(Long id, String type) {
+        this.id = id;
+        this.type = type;
+    }
+
+    public Authorization(Long id, String type, Set<PowerOfAttorney> attorneys) {
         this.id = id;
         this.type = type;
         this.attorneys = attorneys;
+    }
+
+    public Authorization(String authorizationType) {
+        this.type=authorizationType;
     }
 }
