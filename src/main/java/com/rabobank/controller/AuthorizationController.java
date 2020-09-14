@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class CardController {
+public class AuthorizationController {
 
     @Autowired
     private CardService cardService;

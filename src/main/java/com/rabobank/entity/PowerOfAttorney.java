@@ -1,16 +1,18 @@
 package com.rabobank.entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
 @Setter
 @Getter
+
 public class PowerOfAttorney {
 
     @Id
@@ -20,13 +22,12 @@ public class PowerOfAttorney {
     private String grantee;
     private String account;
     private String direction;
-   /* private List<Authorization> authorizationList;*/
-
+    @ManyToMany
+    private Set<Authorization> authorizationSet = new HashSet<>();
 
 
     public PowerOfAttorney() {
     }
-
 
 
     public PowerOfAttorney(Long attorneyId, String grantor, String grantee, String account, String direction) {
@@ -36,51 +37,11 @@ public class PowerOfAttorney {
         this.grantee = grantee;
         this.account = account;
         this.direction = direction;
-        /*this.authorizationList = authorizationList;
-        this.cards = cards;*/
+        this.authorizationSet = authorizationSet;
     }
 
-  /*  public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getGrantor() {
-        return grantor;
-    }
-
-    public void setGrantor(String grantor) {
-        this.grantor = grantor;
-    }
-
-    public String getGrantee() {
-        return grantee;
-    }
-
-    public void setGrantee(String grantee) {
-        this.grantee = grantee;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-    public String getDirection() {
-        return direction;
-    }
-
-    public void setDirection(String direction) {
-        this.direction = direction;
-    }*/
-
-    @Override
+   /* @Override
     public String toString() {
         return "PowerOfAttorney{" +
                 "attorneyId=" + attorneyId +
@@ -89,5 +50,5 @@ public class PowerOfAttorney {
                 ", account='" + account + '\'' +
                 ", direction='" + direction + '\'' +
                 '}';
-    }
+    }*/
 }
