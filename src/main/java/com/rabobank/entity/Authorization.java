@@ -1,5 +1,7 @@
 package com.rabobank.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +18,9 @@ public class Authorization {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String type;
-    @ManyToMany
+    @ManyToMany(mappedBy = "authorizationSet", fetch = FetchType.LAZY)
+/*    @JsonIgnoreProperties("attorneys")
+    @JsonManagedReference*/
     private Set<PowerOfAttorney> attorneys = new HashSet<>();
 
     public Authorization() {

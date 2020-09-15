@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AuthorizationService {
@@ -14,20 +15,16 @@ public class AuthorizationService {
     @Autowired
     private AuthorizationRepository authorizationRepository;
 
-    public List<Authorization> getAllAuthos(Long id) {
+    public List<Authorization> getAllAuthorizations() {
         List<Authorization> authorizations = new ArrayList<>();
         authorizationRepository.findAll().forEach(authorizations::add);
         return authorizations;
     }
 
-   /* public Optional<Authorization> getCard(Long id) {
-        return authorizationRepository.findById(id);
-    }*/
+    public Optional<Authorization> getAuthorization(Long authorizationId) {
+        return authorizationRepository.findById(authorizationId);
+    }
 
-   /* public List<Card> getCardsByStatus() {
-
-        return (List<Card>) authorizationRepository.findAllActiveCards();
-    }*/
 
     public void saveAll(List<Authorization> authorizations) {
         authorizationRepository.saveAll(authorizations);

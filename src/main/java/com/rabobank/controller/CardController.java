@@ -17,7 +17,7 @@ public class CardController {
 
     @RequestMapping("/powerOfAttorneys/{attorneyId}/cards")
     public List<Card> getAllCards(@PathVariable Long attorneyId) {
-        return cardService.getAllCards(attorneyId);
+        return cardService.getAllCardsByAttorneyId(attorneyId);
     }
 
     @RequestMapping("/powerOfAttorneys/{attorneyId}/cards/{cardId}")

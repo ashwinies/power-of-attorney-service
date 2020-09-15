@@ -17,7 +17,7 @@ public class CardService {
     @Autowired
     private CardRepository cardRepository;
 
-    public List<Card> getAllCards(Long id) {
+    public List<Card> getAllCardsByAttorneyId(Long id) {
         List<Card> cards = new ArrayList<>();
         cardRepository.findByPowerOfAttorneyAttorneyId(id).forEach(cards::add);
         return cards;

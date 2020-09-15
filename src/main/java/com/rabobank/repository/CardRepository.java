@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 public interface CardRepository extends CrudRepository<Card, Long> {
+
     public List<Card> findByPowerOfAttorneyAttorneyId(Long attorneyId);
 
     @Query("SELECT u FROM Card u WHERE u.status = 'active'")
