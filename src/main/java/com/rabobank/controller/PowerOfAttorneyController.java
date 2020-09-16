@@ -32,11 +32,10 @@ public class PowerOfAttorneyController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/powerOfAttorneys/authorizations/{authorizationType}")
     public void addPowerOfAttorneys(@RequestBody List<PowerOfAttorney> powerOfAttorneyList, @PathVariable String authorizationType) {
-        //java 11 feature of handling strings, input (VIEW,DEBIT) output will be list of string
-        List<String> types = authorizationType.lines().collect(Collectors.toList());
+        String[] types = authorizationType.split(",");
         for (PowerOfAttorney attorney : powerOfAttorneyList
         ) {
-            setAuthorizationForAttorney(types, attorney);
+            setAuthorizationForAttorney(Arrays.asList(types), attorney);
             powerOfAttorneyService.addPowerOfAttorney(attorney);
         }
 

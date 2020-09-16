@@ -23,8 +23,8 @@ public class AuthorizationController {
     }
 
     @RequestMapping("/authorization/{authId}")
-    public Optional<Authorization> getAuthorization(@PathVariable Long authorizationId) {
-        return authorizationService.getAuthorization(authorizationId);
+    public Optional<Authorization> getAuthorization(@PathVariable Long authId) {
+        return authorizationService.getAuthorization(authId);
     }
 
 }

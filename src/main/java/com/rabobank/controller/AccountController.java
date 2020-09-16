@@ -22,7 +22,7 @@ public class AccountController {
         return accountService.getAllAccountsByAttorneyId(attorneyId);
     }
 
-    @RequestMapping("/powerOfAttorneys/{attorneyId}/accounts/{accountId}")
+    @RequestMapping("/accounts/{accountId}")
     public Optional<Account> getAccountById(@PathVariable Long accountId) {
         return accountService.getAccount(accountId);
     }
