@@ -5,8 +5,12 @@ import com.rabobank.entity.PowerOfAttorney;
 import com.rabobank.service.AuthorizationService;
 import com.rabobank.service.PowerOfAttorneyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,13 +22,21 @@ public class AuthorizationController {
     private AuthorizationService authorizationService;
 
     @RequestMapping("/powerOfAttorneys/{attorneyId}/authorizations")
-    public List<Authorization> getAllAuthorizations() {
-        return authorizationService.getAllAuthorizations();
+    public ResponseEntity<List<Authorization>> getAllAuthorizations() {
+        try {
+            return new ResponseEntity<>(authorizationService.getAllAuthorizations(), HttpStatus.OK);
+        } catch (IOException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid request");
+        }
     }
 
     @RequestMapping("/authorization/{authId}")
-    public Optional<Authorization> getAuthorization(@PathVariable Long authId) {
-        return authorizationService.getAuthorization(authId);
+    public ResponseEntity<Optional<Authorization>> getAuthorization(@PathVariable Long authId) {
+        try {
+            return new ResponseEntity<>(authorizationService.getAuthorization(authId), HttpStatus.OK);
+        } catch (IOException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid request");
+        }
     }
 
 }
